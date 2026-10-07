@@ -1,0 +1,579 @@
+:root {
+  --bg: #FFF8EC;
+  --ink: #1F1A14;
+  --brand: #8F2611;
+  --line: #D9C9AE;
+  --soft: #F3E6CF;
+  --muted: #7A6A50;
+  --paper: #FFFFFF;
+  --ghost: #B39B72;
+}
+
+html {
+  font-size: 22px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* hidden 屬性一定要真的藏起來（按鈕自己設了 display，會蓋掉瀏覽器預設的隱藏）。 */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 1rem 1rem 1.5rem;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+
+[lang="ja"] {
+  font-family: "YuKyokasho Yoko", "YuKyokasho", "Hiragino Mincho ProN", "Hiragino Sans", serif;
+}
+
+main {
+  max-width: 30rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+h1,
+p {
+  margin: 0 0 0.75rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.title {
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.hint {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  min-height: 3.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 16px;
+  border: 2px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: inherit;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+button.primary {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--bg);
+}
+
+button.soft {
+  background: var(--soft);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+:focus-visible {
+  outline: 4px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* 首頁：四顆大按鈕，一列一個 */
+.section-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-list > * + * {
+  margin-top: 0.75rem;
+}
+
+button.section-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 5rem;
+  text-align: left;
+  background: var(--soft);
+}
+
+button.section-button > * + * {
+  margin-top: 0.25rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+}
+
+.section-sub {
+  display: flex;
+  align-items: baseline;
+  max-width: 100%;
+}
+
+.section-sub > * + * {
+  margin-left: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+}
+
+/* 區頁：每一組的小標題 */
+.group-title {
+  font-size: 1.2rem;
+  color: var(--brand);
+  margin-top: 1.5rem;
+}
+
+/* 首頁：每顆行按鈕一列一個 */
+.row-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-list > * + * {
+  margin-top: 0.75rem;
+}
+
+button.row-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+  background: var(--soft);
+}
+
+button.row-button > * + * {
+  margin-top: 0.25rem;
+}
+
+.row-top {
+  display: flex;
+  align-items: baseline;
+  max-width: 100%;
+}
+
+.row-top > * + * {
+  margin-left: 0.5rem;
+}
+
+.row-label {
+  font-size: 1.2rem;
+}
+
+.row-done {
+  font-size: 1rem;
+  color: var(--brand);
+}
+
+.row-kana {
+  display: flex;
+  max-width: 100%;
+}
+
+.row-kana > * + * {
+  margin-left: 0.4rem;
+}
+
+.row-kana-char {
+  font-size: 1.4rem;
+}
+
+/* 字卡 */
+.card-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  max-width: 100%;
+}
+
+.card-top > * {
+  margin-bottom: 0.5rem;
+}
+
+.card-top > * + * {
+  margin-left: 0.75rem;
+}
+
+.card-top button {
+  white-space: nowrap;
+  flex: none;
+}
+
+.card-position {
+  font-size: 1rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* 區頁最上方的標題：320px 寬時放不下，要准它換行。
+   字卡與寫字畫面的頂列不受影響。 */
+.section-heading {
+  white-space: normal;
+}
+
+button.big-kana {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: var(--soft);
+  font-size: 58vw;
+  font-size: min(58vw, 260px);
+  line-height: 1.1;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* 拗音是兩個字，字要小一點才塞得進按鈕 */
+button.big-kana.is-pair {
+  font-size: 34vw;
+  font-size: min(34vw, 150px);
+}
+
+/* 片假名字卡：大字框右下角的小標籤「平假名：あ」。貼著框的底邊，不擋到大字的筆畫。 */
+.pair-tag {
+  position: absolute;
+  right: 0.3rem;
+  bottom: 3px;
+  font-family: -apple-system, "PingFang TC", "Noto Sans TC", sans-serif;
+  font-size: 1rem;
+  line-height: 1.15;
+  padding: 0 0.5rem;
+  background: var(--bg);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* 拗音的大字框比較矮，底下多留一點空間放小標籤。 */
+button.big-kana.is-pair.has-pair-tag {
+  padding-bottom: 1.25rem;
+}
+
+.reading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.approx {
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.no-sound {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* 永遠貼在螢幕最下面，內容變長也不用滑到底才按得到。 */
+.card-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.75rem;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  background: var(--bg);
+  border-top: 2px solid var(--line);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+.card-nav button {
+  min-width: 0;
+}
+
+/* 字卡上的功能按鈕：左右並排一列，每顆兩行（上面圖示、下面文字）。
+   不用 gap：iOS 12 的 Safari 不支援 flex 的 gap。 */
+.card-actions {
+  display: flex;
+  margin-bottom: 0.75rem;
+}
+
+.card-actions > button {
+  display: block;
+  -webkit-box-flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: pre-line;
+  font-size: 1rem;
+  line-height: 1.3;
+  padding: 0.5rem 0.2rem;
+}
+
+.card-actions > button + button {
+  margin-left: 0.4rem;
+}
+
+/* 寫字畫面 */
+.stroke-box {
+  position: relative;
+  width: 86vw;
+  max-width: 22rem;
+  margin: 0 auto 0.75rem;
+  border: 3px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+/* 舊手機不支援正方形比例屬性，用這個撐出正方形 */
+.stroke-box::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.stroke-box > svg,
+.stroke-box > canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stroke-ghost {
+  fill: none;
+  stroke: var(--ghost);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.stroke-ink {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 拗音的字縮小了 0.62 倍，線要加粗補回來才看得清楚 */
+.stroke-ghost.is-small,
+.stroke-ink.is-small {
+  stroke-width: 8;
+}
+
+.stroke-ink.is-drawing {
+  stroke: var(--brand);
+}
+
+.stroke-pad {
+  touch-action: none;
+}
+
+/* 寫字畫面下方兩顆按鈕：整列寬，上下排列 */
+.write-actions {
+  margin-top: 1rem;
+}
+
+.write-actions > button {
+  display: block;
+  width: 100%;
+}
+
+.write-actions > button + button {
+  margin-top: 0.75rem;
+}
+
+.write-actions button {
+  min-width: 0;
+}
+
+/* 授權標示：刻意縮小、調淡（全站唯一小於 1rem 的字）。授權規定必須保留，不可刪。 */
+.credit {
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+.credit a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+/* 字卡上的發音小提醒 */
+.sound-tip {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---- 「💡 怎麼記」面板 ---- */
+
+.memo-panel {
+  background: var(--paper);
+  border: 3px solid var(--line);
+  border-radius: 16px;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.memo-pair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0.25rem;
+}
+
+.memo-pair-kana {
+  width: 40%;
+  max-width: 9rem;
+  height: auto;
+}
+
+.memo-image {
+  display: block;
+  width: 56%;
+  max-width: 13rem;
+  height: auto;
+  margin: 0 0 0 4%;
+  border-radius: 12px;
+}
+
+/* 聯想圖那一列連同下面的說明文字，整包。 */
+.memo-top {
+  margin: 0 0 0.5rem;
+}
+
+.memo-pic {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* 不用 gap：iOS 12 的 Safari 不支援 flex 的 gap。 */
+.origin-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.origin-glyph {
+  width: 38%;
+  max-width: 9rem;
+  height: auto;
+}
+
+.origin-arrow {
+  font-size: 2rem;
+  margin: 0 0.4rem;
+  color: var(--muted);
+}
+
+/* 墨色＝整個來源漢字；紅色＝取用的部分；淡色＝沒取用的部分。 */
+.origin-ink,
+.origin-hot,
+.origin-dim {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.origin-ink { stroke: var(--ink); }
+.origin-hot { stroke: var(--brand); }
+.origin-dim { stroke: var(--line); }
+
+/* 中間那格的示意字形是「填色」的外框，不是筆畫線，所以不上 stroke。 */
+.origin-sogana {
+  fill: #5B6B8C;
+  stroke: none;
+}
+
+/* 平假名的三步：楷書 → 演變 → 假名。 */
+.origin-row-3 {
+  align-items: flex-start;
+}
+
+.origin-cell {
+  width: 26%;
+}
+
+.origin-cell .origin-glyph {
+  display: block;
+  width: 100%;
+  max-width: none;
+}
+
+.origin-label {
+  display: block;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.origin-row-3 .origin-arrow {
+  font-size: 1.25rem;
+  margin: 0 0.1rem;
+  padding-top: 8%;
+}
+
+.memo-origin {
+  font-size: 1rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 0.5rem 0 0;
+}
+
+.memo-tip {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin: 0.5rem 0 0;
+}
+
+.memo-sound {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0.5rem 0 0;
+  background: var(--soft);
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px;
+}
+
+.memo-mix {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--brand);
+  margin: 0.5rem 0 0;
+}
